@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Authors>EmberStack.com</Authors>
+    <Description>Amazon Alexa Skills SDK for .NET</Description>
+    <Copyright>Copyright EmberStack.com</Copyright>
+    <PackageLicenseUrl>https://github.com/EmberStack/ES.FX.Alexa/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/EmberStack/ES.FX.Alexa</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/EmberStack/CDN/master/Projects/ES.FX/es.fx.1.0.0.0.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/EmberStack/ES.FX.Alexa</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>ES Frameworks ES.FX EmberStack .Net DotNet Amazon Alexa Skills SmartHome</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Custom\**" />
+    <EmbeddedResource Remove="Custom\**" />
+    <None Remove="Custom\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ES.FX" Version="2.0.9" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+
+</Project>
