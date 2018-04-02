@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using ES.FX.Alexa.CustomSkill.Core;
-using ES.FX.Alexa.CustomSkill.Core.Requests;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 

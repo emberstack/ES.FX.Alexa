@@ -20,7 +20,7 @@ namespace ES.FX.Alexa.CustomSkill.Core
         [JsonProperty("timestamp")]
         [JsonConverter(typeof(DateTimeConverter))]
         public DateTime Timestamp { get; set; }
-
+        
         [JsonExtensionData]
         public IDictionary<string, JToken> JsonExtensionData { get; set; }
 
