@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace ES.FX.Alexa.CustomSkill.Json
+namespace ES.FX.Alexa.Common.Json
 {
     [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-    public class SkillRequestTypeAttribute : Attribute
+    public class HasTypeAttribute : Attribute
     {
-        public SkillRequestTypeAttribute(string type)
+        public HasTypeAttribute(string type)
         {
             Type = type;
         }

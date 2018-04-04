@@ -1,10 +1,10 @@
-﻿using ES.FX.Alexa.CustomSkill.Json;
+﻿using ES.FX.Alexa.Common.Json;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace ES.FX.Alexa.CustomSkill.Core
 {
-    [SkillRequestType("SessionEndedRequest")]
+    [HasType("SessionEndedRequest")]
     public class SessionEndedRequest : Request, ICoreRequest
     {
         [JsonProperty("reason")]

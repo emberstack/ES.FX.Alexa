@@ -1,5 +1,4 @@
-﻿using System;
-using ES.FX.Alexa.SmartHomeSkill.Core;
+﻿using ES.FX.Alexa.SmartHomeSkill.Core;
 using Newtonsoft.Json;
 
 namespace ES.FX.Alexa.SmartHomeSkill.TemperatureSensor
@@ -11,6 +10,5 @@ namespace ES.FX.Alexa.SmartHomeSkill.TemperatureSensor
 
         [JsonProperty("value")]
         public TemperatureValue Value { get; set; } = new TemperatureValue();
-
     }
 }

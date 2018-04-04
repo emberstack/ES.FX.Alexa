@@ -9,7 +9,7 @@ namespace ES.FX.Alexa.SmartHomeSkill.Core
 
         public static implicit operator NameValue(string value)
         {
-            return new NameValue { Name = value };
+            return new NameValue {Name = value};
         }
     }
 }

@@ -1,8 +1,8 @@
-﻿using ES.FX.Alexa.CustomSkill.Json;
+﻿using ES.FX.Alexa.Common.Json;
 
 namespace ES.FX.Alexa.CustomSkill.Core
 {
-    [SkillRequestType("AlexaSkillEvent.SkillEnabled")]
+    [HasType("AlexaSkillEvent.SkillEnabled")]
     public class SkillEnabledRequest : Request, ICoreRequest
     {
     }

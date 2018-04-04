@@ -1,9 +1,9 @@
-﻿using ES.FX.Alexa.CustomSkill.Json;
+﻿using ES.FX.Alexa.Common.Json;
 using Newtonsoft.Json;
 
 namespace ES.FX.Alexa.CustomSkill.Core
 {
-    [SkillRequestType("AlexaSkillEvent.SkillAccountLinked")]
+    [HasType("AlexaSkillEvent.SkillAccountLinked")]
     public class SkillAccountLinkedRequest : Request, ICoreRequest
     {
         [JsonProperty("body")]

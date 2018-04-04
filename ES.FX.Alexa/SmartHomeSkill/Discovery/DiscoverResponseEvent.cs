@@ -11,7 +11,6 @@ namespace ES.FX.Alexa.SmartHomeSkill.Discovery
                 Namespace = "Alexa.Discovery",
                 Name = "Discover.Response"
             };
-
         }
     }
 }

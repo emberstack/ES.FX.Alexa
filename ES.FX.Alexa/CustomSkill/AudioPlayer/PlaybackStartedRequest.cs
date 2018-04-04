@@ -1,10 +1,10 @@
-﻿using ES.FX.Alexa.CustomSkill.Core;
-using ES.FX.Alexa.CustomSkill.Json;
+﻿using ES.FX.Alexa.Common.Json;
+using ES.FX.Alexa.CustomSkill.Core;
 using Newtonsoft.Json;
 
 namespace ES.FX.Alexa.CustomSkill.AudioPlayer
 {
-    [SkillRequestType("AudioPlayer.PlaybackStarted")]
+    [HasType("AudioPlayer.PlaybackStarted")]
     public class PlaybackStartedRequest : Request, IAudioPlayerRequest
     {
         [JsonProperty("token")]

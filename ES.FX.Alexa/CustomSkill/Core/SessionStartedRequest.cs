@@ -1,8 +1,8 @@
-﻿using ES.FX.Alexa.CustomSkill.Json;
+﻿using ES.FX.Alexa.Common.Json;
 
 namespace ES.FX.Alexa.CustomSkill.Core
 {
-    [SkillRequestType("SessionStartedRequest")]
+    [HasType("SessionStartedRequest")]
     public class SessionStartedRequest : Request, ICoreRequest
     {
     }

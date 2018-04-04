@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 using ES.FX.Alexa.SmartHomeSkill.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -27,23 +28,18 @@ namespace ES.FX.Alexa.SmartHomeSkill.Json
             var directiveNamespace = jobject["header"]["namespace"].Value<string>();
             var directiveName = jobject["header"]["name"].Value<string>();
 
-
-            var directiveTypes =
-                (from assembly in AppDomain.CurrentDomain.GetAssemblies()
-                    from type in assembly.GetTypes()
-                    let attributes = type.GetCustomAttributes(typeof(DirectiveTypeAttribute), true)
-                    where attributes != null && attributes.Length > 0
-                    select new {Type = type, Attributes = attributes.Cast<DirectiveTypeAttribute>()}).ToList();
-
-            var match = directiveTypes.Where(
-                    s => s.Attributes.Any(a => a.Namespace == directiveNamespace && a.Name == directiveName)).Select(s=>s.Type)
-                .FirstOrDefault();
+            var match = Assembly.GetExecutingAssembly().GetTypes()
+                .Select(type => new {type, attributes = type.GetCustomAttributes(typeof(DirectiveTypeAttribute), true)})
+                .Where(t =>
+                    t.attributes != null &&
+                    t.attributes.OfType<DirectiveTypeAttribute>()
+                        .Any(a => a.Namespace == directiveNamespace && a.Name == directiveName))
+                .Select(t => t.type).FirstOrDefault();
 
             if (match == null) match = typeof(UnknownDirective);
-            var directive = (Directive) Activator.CreateInstance(match);
-
-            serializer.Populate(jobject.CreateReader(), directive);
-            return directive;
+            var instance = Activator.CreateInstance(match);
+            serializer.Populate(jobject.CreateReader(), instance);
+            return instance;
         }
     }
 }

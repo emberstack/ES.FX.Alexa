@@ -4,9 +4,7 @@ namespace ES.FX.Alexa.SmartHomeSkill.PowerController
 {
     public enum PowerState
     {
-        [EnumMember(Value = "ON")]
-        On,
-        [EnumMember(Value = "OFF")]
-        Off
+        [EnumMember(Value = "ON")] On,
+        [EnumMember(Value = "OFF")] Off
     }
 }

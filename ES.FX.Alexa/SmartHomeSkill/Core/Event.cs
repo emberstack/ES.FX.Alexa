@@ -1,17 +1,16 @@
-﻿
-using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace ES.FX.Alexa.SmartHomeSkill.Core
 {
-    public class Event : InterfaceMessage
+    public class Event
     {
-        public Event()
+        [JsonProperty("header")]
+        public Header Header { get; set; } = new Header
         {
-            Header = new Header
-            {
-                Name = "Response"
-            };
-        }
+            Name = "Response"
+        };
+
+        [JsonProperty("endpoint", NullValueHandling = NullValueHandling.Ignore)]
+        public Endpoint Endpoint { get; set; }
     }
 }

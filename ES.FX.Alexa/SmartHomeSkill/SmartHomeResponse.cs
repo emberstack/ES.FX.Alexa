@@ -6,7 +6,7 @@ namespace ES.FX.Alexa.SmartHomeSkill
     public class SmartHomeResponse
     {
         [JsonProperty("context", NullValueHandling = NullValueHandling.Ignore)]
-        public Context Context { get;set; }
+        public Context Context { get; set; }
 
         [JsonProperty("event")]
         public Event Event { get; set; }

@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
+using ES.FX.Alexa.Common.Json;
 using ES.FX.Alexa.CustomSkill.Core;
-using ES.FX.Alexa.CustomSkill.Json;
 using Newtonsoft.Json;
 
 namespace ES.FX.Alexa.CustomSkill
@@ -17,7 +17,7 @@ namespace ES.FX.Alexa.CustomSkill
         public Context Context { get; set; }
 
         [JsonProperty("request")]
-        [JsonConverter(typeof(SkillRequestConverter))]
+        [JsonConverter(typeof(WithTypeConverter<Request, RequestDefault>))]
         public Request Request { get; set; }
 
         [OnDeserialized]

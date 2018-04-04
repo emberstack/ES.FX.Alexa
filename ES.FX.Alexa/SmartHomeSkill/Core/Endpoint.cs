@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using ES.FX.Alexa.Common.Json;
 using Newtonsoft.Json;
 
 namespace ES.FX.Alexa.SmartHomeSkill.Core
 {
     public class Endpoint
     {
+        [JsonConverter(typeof(WithTypeConverter<Scope, ScopeDefault>))]
         [JsonProperty("scope")]
-        public TypedToken Scope { get; set; }
+        public Scope Scope { get; set; }
 
         [JsonProperty("endpointId")]
         public string EndpointId { get; set; }
 
         [JsonProperty("cookie")]
-        public Dictionary<string,dynamic> Cookie { get; set; }
+        public Dictionary<string, dynamic> Cookie { get; set; }
     }
 }

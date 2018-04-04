@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Linq;
-using ES.FX.Alexa.CustomSkill.Core;
+using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace ES.FX.Alexa.CustomSkill.Json
+namespace ES.FX.Alexa.Common.Json
 {
-    public class SkillRequestConverter : JsonConverter
+    public class WithTypeConverter<TBaseType, TDefaultType> : JsonConverter where TDefaultType : TBaseType, new()
     {
         public override bool CanWrite => false;
 
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(Request);
+            return objectType == typeof(TBaseType);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
@@ -27,15 +27,14 @@ namespace ES.FX.Alexa.CustomSkill.Json
             string requestType = null;
             if (jobject.ContainsKey("type")) requestType = jobject["type"].Value<string>();
 
-            var possibleTypes =
-                (from type in typeof(SkillRequestTypeAttribute).Assembly.GetTypes()
-                    let attributes = type.GetCustomAttributes(typeof(SkillRequestTypeAttribute), true)
-                    where attributes != null && attributes.Length > 0
-                    select new {Type = type, Attributes = attributes.Cast<SkillRequestTypeAttribute>()}).ToList();
+            var match = Assembly.GetExecutingAssembly().GetTypes()
+                .Select(type => new {type, attributes = type.GetCustomAttributes(typeof(HasTypeAttribute), true)})
+                .Where(t =>
+                    t.attributes != null &&
+                    t.attributes.OfType<HasTypeAttribute>().Any(a => a.Type == requestType))
+                .Select(t => t.type).FirstOrDefault();
 
-            var match = possibleTypes.Where(s => s.Attributes.Any(a => a.Type == requestType))
-                .Select(s => s.Type).FirstOrDefault();
-            if (match == null) match = typeof(UnknownRequest);
+            if (match == null) match = typeof(TDefaultType);
             var instance = Activator.CreateInstance(match);
             serializer.Populate(jobject.CreateReader(), instance);
             return instance;

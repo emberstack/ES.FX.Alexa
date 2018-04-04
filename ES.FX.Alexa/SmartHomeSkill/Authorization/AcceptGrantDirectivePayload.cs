@@ -1,14 +1,16 @@
-﻿using ES.FX.Alexa.SmartHomeSkill.Core;
+﻿using ES.FX.Alexa.Common.Json;
 using Newtonsoft.Json;
 
 namespace ES.FX.Alexa.SmartHomeSkill.Authorization
 {
     public class AcceptGrantDirectivePayload
     {
+        [JsonConverter(typeof(WithTypeConverter<Grant, GrantDefault>))]
         [JsonProperty("grant")]
-        public TypedCode Grant { get; set; }
+        public Grant Grant { get; set; }
 
+        [JsonConverter(typeof(WithTypeConverter<Grantee, GranteeDefault>))]
         [JsonProperty("grantee")]
-        public TypedToken Grantee { get; set; }
+        public Grantee Grantee { get; set; }
     }
 }

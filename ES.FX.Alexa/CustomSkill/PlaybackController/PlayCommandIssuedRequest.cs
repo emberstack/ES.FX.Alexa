@@ -1,9 +1,9 @@
-﻿using ES.FX.Alexa.CustomSkill.Core;
-using ES.FX.Alexa.CustomSkill.Json;
+﻿using ES.FX.Alexa.Common.Json;
+using ES.FX.Alexa.CustomSkill.Core;
 
 namespace ES.FX.Alexa.CustomSkill.PlaybackController
 {
-    [SkillRequestType("PlaybackController.PlayCommandIssued")]
+    [HasType("PlaybackController.PlayCommandIssued")]
     public class PlayCommandIssuedRequest : Request, IPlaybackControllerRequest
     {
     }

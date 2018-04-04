@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using ES.FX.Alexa.CustomSkill.Json;
+using ES.FX.Alexa.Common.Json;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -18,9 +18,9 @@ namespace ES.FX.Alexa.CustomSkill.Core
         public string Locale { get; set; }
 
         [JsonProperty("timestamp")]
-        [JsonConverter(typeof(DateTimeConverter))]
+        [JsonConverter(typeof(AlexaDateTimeConverter))]
         public DateTime Timestamp { get; set; }
-        
+
         [JsonExtensionData]
         public IDictionary<string, JToken> JsonExtensionData { get; set; }
 

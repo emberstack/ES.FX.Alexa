@@ -1,9 +1,9 @@
-﻿using ES.FX.Alexa.CustomSkill.Json;
+﻿using ES.FX.Alexa.Common.Json;
 using Newtonsoft.Json;
 
 namespace ES.FX.Alexa.CustomSkill.Core
 {
-    [SkillRequestType("System.ExceptionEncountered")]
+    [HasType("System.ExceptionEncountered")]
     public class ExceptionEncounteredRequest : Request, ICoreRequest
     {
         [JsonProperty("error")]

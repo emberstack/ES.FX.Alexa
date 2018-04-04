@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ES.FX.Alexa.SmartHomeSkill.Core
+﻿namespace ES.FX.Alexa.SmartHomeSkill.Core
 {
     public static class Interfaces
     {
