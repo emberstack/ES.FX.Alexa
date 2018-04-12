@@ -4,21 +4,16 @@ using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace ES.FX.Alexa.Common.Json
+namespace ES.FX.Alexa.Json
 {
     public class WithTypeConverter<TBaseType, TDefaultType> : JsonConverter where TDefaultType : TBaseType, new()
     {
         public override bool CanWrite => false;
 
-        public override bool CanConvert(Type objectType)
-        {
-            return objectType == typeof(TBaseType);
-        }
+        public override bool CanConvert(Type objectType) => objectType == typeof(TBaseType);
 
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer) =>
             throw new NotSupportedException();
-        }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
             JsonSerializer serializer)

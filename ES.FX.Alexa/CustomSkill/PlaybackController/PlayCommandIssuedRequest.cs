@@ -1,5 +1,5 @@
-﻿using ES.FX.Alexa.Common.Json;
-using ES.FX.Alexa.CustomSkill.Core;
+﻿using ES.FX.Alexa.CustomSkill.Core;
+using ES.FX.Alexa.Json;
 
 namespace ES.FX.Alexa.CustomSkill.PlaybackController
 {

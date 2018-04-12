@@ -1,4 +1,4 @@
-﻿using ES.FX.Alexa.Common.Json;
+﻿using ES.FX.Alexa.Json;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 

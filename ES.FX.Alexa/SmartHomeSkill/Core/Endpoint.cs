@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using ES.FX.Alexa.Common.Json;
+using ES.FX.Alexa.Json;
 using Newtonsoft.Json;
 
 namespace ES.FX.Alexa.SmartHomeSkill.Core

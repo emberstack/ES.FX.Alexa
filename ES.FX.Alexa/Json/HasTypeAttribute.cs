@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ES.FX.Alexa.Common.Json
+namespace ES.FX.Alexa.Json
 {
     [AttributeUsage(AttributeTargets.Class, Inherited = false)]
     public class HasTypeAttribute : Attribute
