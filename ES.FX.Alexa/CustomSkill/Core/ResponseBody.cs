@@ -16,9 +16,15 @@ namespace ES.FX.Alexa.CustomSkill.Core
         public Reprompt Reprompt { get; set; }
 
         [JsonProperty("shouldEndSession", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? ShouldEndSession { get; set; } = false;
+        public bool? ShouldEndSession { get; set; } = true;
 
         [JsonProperty("directives", NullValueHandling = NullValueHandling.Ignore)]
         public IList<Directive> Directives { get; set; } = new List<Directive>();
+
+
+        public static implicit operator ResponseBody(string value)
+        {
+            return new ResponseBody {OutputSpeech = new PlainTextOutputSpeech {Text = value}};
+        }
     }
 }

@@ -7,5 +7,10 @@ namespace ES.FX.Alexa.CustomSkill.UI
         [JsonProperty("type")]
         [JsonRequired]
         public abstract string Type { get; }
+
+        public static implicit operator OutputSpeech(string value)
+        {
+            return new PlainTextOutputSpeech {Text = value};
+        }
     }
 }

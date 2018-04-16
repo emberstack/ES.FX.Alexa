@@ -15,6 +15,6 @@ namespace ES.FX.Alexa.CustomSkill
 
         [JsonRequired]
         [JsonProperty("response")]
-        public ResponseBody Response { get; set; }
+        public ResponseBody Response { get; set; } = new ResponseBody();
     }
 }

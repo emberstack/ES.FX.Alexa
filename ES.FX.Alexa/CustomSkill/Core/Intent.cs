@@ -14,6 +14,6 @@ namespace ES.FX.Alexa.CustomSkill.Core
         public ConfirmationStatus ConfirmationStatus { get; set; }
 
         [JsonProperty("slots")]
-        public Dictionary<string, Slot> Slots { get; set; }
+        public Dictionary<string, Slot> Slots { get; set; } = new Dictionary<string, Slot>();
     }
 }
