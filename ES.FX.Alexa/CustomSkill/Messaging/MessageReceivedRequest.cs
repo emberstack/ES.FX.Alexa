@@ -1,5 +1,4 @@
-﻿using ES.FX.Alexa.CustomSkill.Core;
-using ES.FX.Alexa.Json;
+﻿using ES.FX.Alexa.Json;
 using Newtonsoft.Json;
 
 namespace ES.FX.Alexa.CustomSkill.Messaging

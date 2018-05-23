@@ -1,6 +1,4 @@
-﻿using ES.FX.Alexa.CustomSkill.Core;
-
-namespace ES.FX.Alexa.CustomSkill.AudioPlayer
+﻿namespace ES.FX.Alexa.CustomSkill.AudioPlayer
 {
     public class StopDirective : Directive
     {

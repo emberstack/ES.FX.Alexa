@@ -1,5 +1,4 @@
-﻿using ES.FX.Alexa.SmartHomeSkill.Core;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace ES.FX.Alexa.SmartHomeSkill.PowerController
@@ -12,5 +11,6 @@ namespace ES.FX.Alexa.SmartHomeSkill.PowerController
         [JsonProperty("value")]
         [JsonConverter(typeof(StringEnumConverter))]
         public PowerState Value { get; set; }
+
     }
 }

@@ -1,5 +1,4 @@
-﻿using ES.FX.Alexa.CustomSkill.Core;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace ES.FX.Alexa.CustomSkill.VideoApp
 {

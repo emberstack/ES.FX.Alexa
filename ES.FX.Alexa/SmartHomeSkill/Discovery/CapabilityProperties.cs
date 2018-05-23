@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using ES.FX.Alexa.SmartHomeSkill.Core;
 using Newtonsoft.Json;
 
 namespace ES.FX.Alexa.SmartHomeSkill.Discovery

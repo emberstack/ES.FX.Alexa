@@ -1,5 +1,4 @@
-﻿using ES.FX.Alexa.CustomSkill.Core;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace ES.FX.Alexa.CustomSkill.AudioPlayer

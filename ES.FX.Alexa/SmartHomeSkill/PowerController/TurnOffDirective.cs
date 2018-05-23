@@ -1,5 +1,4 @@
-﻿using ES.FX.Alexa.SmartHomeSkill.Core;
-using ES.FX.Alexa.SmartHomeSkill.Json;
+﻿using ES.FX.Alexa.SmartHomeSkill.Json;
 
 namespace ES.FX.Alexa.SmartHomeSkill.PowerController
 {

@@ -1,0 +1,12 @@
+﻿using Newtonsoft.Json;
+
+namespace ES.FX.Alexa.CustomSkill.Dialog
+{
+    public class DialogConfirmIntentDirective : Directive
+    {
+        public override string Type => "Dialog.ConfirmIntent";
+
+        [JsonProperty("updatedIntent", NullValueHandling = NullValueHandling.Ignore)]
+        public Intent UpdatedIntent { get; set; }
+    }
+}

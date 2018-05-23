@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using ES.FX.Alexa.SmartHomeSkill.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 

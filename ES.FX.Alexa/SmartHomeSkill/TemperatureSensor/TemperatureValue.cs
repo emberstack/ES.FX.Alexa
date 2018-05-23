@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace ES.FX.Alexa.SmartHomeSkill.TemperatureSensor
 {
@@ -8,11 +9,12 @@ namespace ES.FX.Alexa.SmartHomeSkill.TemperatureSensor
         public double Value { get; set; }
 
         [JsonProperty("scale")]
-        public string Scale => "CELSIUS";
+        [JsonConverter(typeof(StringEnumConverter))]
+        public TemperatureScale Scale { get; set; } = TemperatureScale.Celsius;
 
         public static implicit operator TemperatureValue(double value)
         {
-            return new TemperatureValue {Value = value};
+            return new TemperatureValue { Value = value };
         }
     }
 }

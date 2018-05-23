@@ -1,6 +1,4 @@
-﻿using ES.FX.Alexa.SmartHomeSkill.Core;
-
-namespace ES.FX.Alexa.SmartHomeSkill.Authorization
+﻿namespace ES.FX.Alexa.SmartHomeSkill.Authorization
 {
     public class AcceptGrantEvent : Event
     {
