@@ -1,8 +1,4 @@
-﻿using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace ES.FX.Alexa.CustomSkill
 {
@@ -10,8 +6,8 @@ namespace ES.FX.Alexa.CustomSkill
     {
         public ProgressiveResponse()
         {
-
         }
+
         public ProgressiveResponse(string requestId)
         {
             Header = new ProgressiveResponseHeader {RequestId = requestId};

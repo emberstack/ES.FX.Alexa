@@ -6,12 +6,12 @@ namespace ES.FX.Alexa.CustomSkill.Api
 {
     public abstract class SkillApi
     {
-        protected HttpClient HttpClient { get; }
-
         protected SkillApi(HttpClient httpClient)
         {
             HttpClient = httpClient;
         }
+
+        protected HttpClient HttpClient { get; }
 
         protected async Task<T> GetAsync<T>(string resourceUrl, bool tryGet = true)
         {

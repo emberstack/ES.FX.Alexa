@@ -25,7 +25,7 @@ namespace ES.FX.Alexa.CustomSkill
 
                 if (!certificateUri.Scheme.Equals("https", StringComparison.OrdinalIgnoreCase) &&
                     !certificateUri.Host.Equals("s3.amazonaws.com", StringComparison.OrdinalIgnoreCase) &&
-                    !certificateUri.LocalPath.StartsWith("/echo.api",StringComparison.OrdinalIgnoreCase) &&
+                    !certificateUri.LocalPath.StartsWith("/echo.api", StringComparison.OrdinalIgnoreCase) &&
                     !certificateUri.IsDefaultPort)
                     return false;
 

@@ -28,7 +28,7 @@ namespace ES.FX.Alexa.CustomSkill
         public IDictionary<string, JToken> JsonExtensionData { get; set; }
 
         /// <summary>
-        /// Provides <see cref="HttpClient" /> with authentication and endpoint set for this request.
+        ///     Provides <see cref="HttpClient" /> with authentication and endpoint set for this request.
         /// </summary>
         [JsonIgnore]
         public HttpClient ApiHttpClient { get; internal set; }
@@ -46,8 +46,9 @@ namespace ES.FX.Alexa.CustomSkill
             };
             ApiHttpClient = new HttpClient
             {
-                BaseAddress = new Uri(Context.System.ApiEndpoint.EndsWith("/") ?
-                    Context.System.ApiEndpoint : $"{Context.System.ApiEndpoint}/")
+                BaseAddress = new Uri(Context.System.ApiEndpoint.EndsWith("/")
+                    ? Context.System.ApiEndpoint
+                    : $"{Context.System.ApiEndpoint}/")
             };
             ApiHttpClient.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", Context.System.ApiAccessToken);

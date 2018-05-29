@@ -11,6 +11,5 @@ namespace ES.FX.Alexa.SmartHomeSkill.PowerController
         [JsonProperty("value")]
         [JsonConverter(typeof(StringEnumConverter))]
         public PowerState Value { get; set; }
-
     }
 }

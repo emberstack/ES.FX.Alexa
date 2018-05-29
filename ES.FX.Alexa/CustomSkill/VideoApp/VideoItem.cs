@@ -8,6 +8,6 @@ namespace ES.FX.Alexa.CustomSkill.VideoApp
         public string Source { get; set; }
 
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
-        public VideoItemMetadata Metadata { get; set; }
+        public VideoItemMetadata Metadata { get; set; } = new VideoItemMetadata();
     }
 }

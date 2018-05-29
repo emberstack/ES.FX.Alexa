@@ -33,7 +33,7 @@ namespace ES.FX.Alexa.CustomSkill
         public RequestEnvelope Envelope { get; internal set; }
 
         /// <summary>
-        /// Provides <see cref="HttpClient" /> with authentication and endpoint set for this request.
+        ///     Provides <see cref="HttpClient" /> with authentication and endpoint set for this request.
         /// </summary>
         [JsonIgnore]
         public HttpClient ApiHttpClient { get; internal set; }

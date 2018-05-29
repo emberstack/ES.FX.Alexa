@@ -14,7 +14,7 @@ namespace ES.FX.Alexa.SmartHomeSkill.TemperatureSensor
 
         public static implicit operator TemperatureValue(double value)
         {
-            return new TemperatureValue { Value = value };
+            return new TemperatureValue {Value = value};
         }
     }
 }

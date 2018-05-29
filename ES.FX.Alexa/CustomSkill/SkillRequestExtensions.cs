@@ -9,7 +9,7 @@ namespace ES.FX.Alexa.CustomSkill
         {
             return request.DirectivesApi().ProgressiveResponseAsync(new ProgressiveResponse(request)
             {
-                Directive = { Speech = speech }
+                Directive = {Speech = speech}
             });
         }
 

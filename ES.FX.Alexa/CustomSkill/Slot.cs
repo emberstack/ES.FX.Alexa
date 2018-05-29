@@ -19,11 +19,11 @@ namespace ES.FX.Alexa.CustomSkill
         [JsonProperty("resolutions", NullValueHandling = NullValueHandling.Ignore)]
         public Resolutions Resolutions { get; set; }
 
+        public bool HasValue => !string.IsNullOrEmpty(Value);
+
         public override string ToString()
         {
             return $"{Name ?? "null"}={Value ?? "null"} [{ConfirmationStatus}]";
         }
-
-        public bool HasValue => !string.IsNullOrEmpty(Value);
     }
 }

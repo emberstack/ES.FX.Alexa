@@ -6,12 +6,12 @@ namespace ES.FX.Alexa.CustomSkill.Api
 {
     public class DeviceApi : SkillApi
     {
-        public string DeviceId { get; }
-
         public DeviceApi(string deviceId, HttpClient httpClient) : base(httpClient)
         {
             DeviceId = deviceId;
         }
+
+        public string DeviceId { get; }
 
         public Task<CountryAndPostalCode> GetCountryAndPostalCodeAsync()
         {

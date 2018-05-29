@@ -1,8 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ES.FX.Alexa.CustomSkill.Dialog;
+using ES.FX.Alexa.CustomSkill.Display;
+using ES.FX.Alexa.CustomSkill.VideoApp;
 
 namespace ES.FX.Alexa.CustomSkill
 {
@@ -24,6 +25,7 @@ namespace ES.FX.Alexa.CustomSkill
             response.Speak(speechBuilder.ToString());
             return response;
         }
+
         public static SkillResponse Speak(this SkillResponse skillResponse, StringBuilder speechBuilder)
         {
             skillResponse.Response.Speak(speechBuilder);
@@ -35,6 +37,7 @@ namespace ES.FX.Alexa.CustomSkill
         {
             return response.Speak(speech.ToSsmlSpeech());
         }
+
         public static SkillResponse Speak(this SkillResponse skillResponse, string speech)
         {
             skillResponse.Response.Speak(speech);
@@ -47,6 +50,7 @@ namespace ES.FX.Alexa.CustomSkill
             response.OutputSpeech = speech;
             return response;
         }
+
         public static SkillResponse Speak(this SkillResponse skillResponse, OutputSpeech speech)
         {
             skillResponse.Response.Speak(speech);
@@ -58,6 +62,7 @@ namespace ES.FX.Alexa.CustomSkill
         {
             return response.Reprompt(speech.ToSsmlSpeech());
         }
+
         public static SkillResponse Reprompt(this SkillResponse skillResponse, string speech)
         {
             skillResponse.Response.Reprompt(speech);
@@ -74,6 +79,7 @@ namespace ES.FX.Alexa.CustomSkill
             response.ShouldEndSession = false;
             return response;
         }
+
         public static SkillResponse Reprompt(this SkillResponse skillResponse, OutputSpeech speech)
         {
             skillResponse.Response.Reprompt(speech);
@@ -86,6 +92,7 @@ namespace ES.FX.Alexa.CustomSkill
             response.Directives.Add(directive);
             return response;
         }
+
         public static SkillResponse AddDirective(this SkillResponse skillResponse, Directive directive)
         {
             skillResponse.Response.AddDirective(directive);
@@ -98,6 +105,7 @@ namespace ES.FX.Alexa.CustomSkill
             response.ShouldEndSession = endSession;
             return response;
         }
+
         public static SkillResponse ShouldEndSession(this SkillResponse skillResponse, bool endSession)
         {
             skillResponse.Response.ShouldEndSession(endSession);
@@ -112,6 +120,7 @@ namespace ES.FX.Alexa.CustomSkill
                 UpdatedIntent = updatedIntent
             }).ShouldEndSession(false);
         }
+
         public static SkillResponse AddDialogDelegate(this SkillResponse skillResponse, Intent updatedIntent = null)
         {
             skillResponse.Response.AddDialogDelegate(updatedIntent);
@@ -123,12 +132,13 @@ namespace ES.FX.Alexa.CustomSkill
             Intent updatedIntent = null)
         {
             return response.AddDirective(new DialogElicitSlotDirective
-            {
-                SlotName = slotName,
-                UpdatedIntent = updatedIntent
-            })
+                {
+                    SlotName = slotName,
+                    UpdatedIntent = updatedIntent
+                })
                 .ShouldEndSession(false);
         }
+
         public static SkillResponse AddDialogElicitSlot(this SkillResponse skillResponse, string slotName,
             Intent updatedIntent = null)
         {
@@ -141,12 +151,13 @@ namespace ES.FX.Alexa.CustomSkill
             Intent updatedIntent = null)
         {
             return response.AddDirective(new DialogConfirmSlotDirective
-            {
-                SlotName = slotName,
-                UpdatedIntent = updatedIntent
-            })
+                {
+                    SlotName = slotName,
+                    UpdatedIntent = updatedIntent
+                })
                 .ShouldEndSession(false);
         }
+
         public static SkillResponse AddDialogConfirmSlot(this SkillResponse skillResponse, string slotName,
             Intent updatedIntent = null)
         {
@@ -162,7 +173,9 @@ namespace ES.FX.Alexa.CustomSkill
                 UpdatedIntent = updatedIntent
             }).ShouldEndSession(false);
         }
-        public static SkillResponse AddDialogConfirmIntent(this SkillResponse skillResponse, Intent updatedIntent = null)
+
+        public static SkillResponse AddDialogConfirmIntent(this SkillResponse skillResponse,
+            Intent updatedIntent = null)
         {
             skillResponse.Response.AddDialogConfirmIntent(updatedIntent);
             return skillResponse;
@@ -179,6 +192,7 @@ namespace ES.FX.Alexa.CustomSkill
                 }
             });
         }
+
         public static SkillResponse AddHintDirective(this SkillResponse skillResponse, string hint)
         {
             skillResponse.Response.AddHintDirective(hint);
@@ -191,6 +205,7 @@ namespace ES.FX.Alexa.CustomSkill
             response.Card = card;
             return response;
         }
+
         public static SkillResponse WithCard(this SkillResponse skillResponse, Card card)
         {
             skillResponse.Response.WithCard(card);
@@ -206,13 +221,15 @@ namespace ES.FX.Alexa.CustomSkill
                 Content = content
             });
         }
+
         public static SkillResponse WithSimpleCard(this SkillResponse skillResponse, string title, string content)
         {
             skillResponse.Response.WithSimpleCard(title, content);
             return skillResponse;
         }
 
-        public static ResponseBody WithStandardCard(this ResponseBody response, string title, string content, string smallImageUrl = null, string largeImageUrl = null)
+        public static ResponseBody WithStandardCard(this ResponseBody response, string title, string content,
+            string smallImageUrl = null, string largeImageUrl = null)
         {
             return response.WithCard(new StandardCard
             {
@@ -225,7 +242,9 @@ namespace ES.FX.Alexa.CustomSkill
                 }
             });
         }
-        public static SkillResponse WithStandardCard(this SkillResponse skillResponse, string title, string content, string smallImageUrl = null, string largeImageUrl = null)
+
+        public static SkillResponse WithStandardCard(this SkillResponse skillResponse, string title, string content,
+            string smallImageUrl = null, string largeImageUrl = null)
         {
             skillResponse.Response.WithSimpleCard(title, content);
             return skillResponse;
@@ -236,6 +255,7 @@ namespace ES.FX.Alexa.CustomSkill
         {
             return response.WithCard(new LinkAccountCard());
         }
+
         public static SkillResponse WithLinkAccountCard(this SkillResponse skillResponse)
         {
             skillResponse.Response.WithLinkAccountCard();
@@ -243,27 +263,75 @@ namespace ES.FX.Alexa.CustomSkill
         }
 
 
-        public static ResponseBody WithAskForPermissionsConsentCard(this ResponseBody response, IEnumerable<string> permissions)
+        public static ResponseBody WithAskForPermissionsConsentCard(this ResponseBody response,
+            IEnumerable<string> permissions)
         {
             return response.WithCard(new AskForPermissionsConsentCard
             {
                 Permissions = permissions?.ToList()
             });
         }
-        public static ResponseBody WithAskForPermissionsConsentCard(this ResponseBody response, params string[] permissions)
+
+        public static ResponseBody WithAskForPermissionsConsentCard(this ResponseBody response,
+            params string[] permissions)
         {
             return response.WithAskForPermissionsConsentCard(permissions as IEnumerable<string>);
         }
-        public static SkillResponse WithAskForPermissionsConsentCard(this SkillResponse skillResponse, IEnumerable<string> permissions)
+
+        public static SkillResponse WithAskForPermissionsConsentCard(this SkillResponse skillResponse,
+            IEnumerable<string> permissions)
+        {
+            skillResponse.Response.WithAskForPermissionsConsentCard(permissions);
+            return skillResponse;
+        }
+
+        public static SkillResponse WithAskForPermissionsConsentCard(this SkillResponse skillResponse,
+            params string[] permissions)
         {
             skillResponse.Response.WithAskForPermissionsConsentCard(permissions);
             return skillResponse;
         }
 
 
-        public static SkillResponse WithAskForPermissionsConsentCard(this SkillResponse skillResponse, params string[] permissions)
+        public static ResponseBody AddRenderTemplateDirective<TDisplayTemplate>(this ResponseBody response,
+            TDisplayTemplate template) where TDisplayTemplate : DisplayTemplate
         {
-            skillResponse.Response.WithAskForPermissionsConsentCard(permissions);
+            response.AddDirective(new DisplayRenderTemplateDirective
+            {
+                Template = template
+            });
+            return response;
+        }
+
+        public static SkillResponse AddRenderTemplateDirective<TDisplayTemplate>(this SkillResponse skillResponse,
+            TDisplayTemplate template) where TDisplayTemplate : DisplayTemplate
+        {
+            skillResponse.Response.AddRenderTemplateDirective(template);
+            return skillResponse;
+        }
+
+
+        public static ResponseBody AddVideoAddLaunchDirective(this ResponseBody response,
+            string source, string title = null, string subtitle = null)
+        {
+            return response.AddDirective(new VideoAppLaunchDirective
+            {
+                VideoItem =
+                {
+                    Source = source,
+                    Metadata =
+                    {
+                        Title = title,
+                        Subtitle = subtitle
+                    }
+                }
+            });
+        }
+
+        public static SkillResponse AddVideoAddLaunchDirective(this SkillResponse skillResponse,
+            string source, string title = null, string subtitle = null)
+        {
+            skillResponse.Response.AddVideoAddLaunchDirective(source, title, subtitle);
             return skillResponse;
         }
     }
