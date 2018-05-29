@@ -23,5 +23,7 @@ namespace ES.FX.Alexa.CustomSkill
         {
             return $"{Name ?? "null"}={Value ?? "null"} [{ConfirmationStatus}]";
         }
+
+        public bool HasValue => !string.IsNullOrEmpty(Value);
     }
 }

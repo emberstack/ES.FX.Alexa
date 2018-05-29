@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using ES.FX.Alexa.Json;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -30,5 +31,11 @@ namespace ES.FX.Alexa.CustomSkill
         /// </summary>
         [JsonIgnore]
         public RequestEnvelope Envelope { get; internal set; }
+
+        /// <summary>
+        /// Provides <see cref="HttpClient" /> with authentication and endpoint set for this request.
+        /// </summary>
+        [JsonIgnore]
+        public HttpClient ApiHttpClient { get; internal set; }
     }
 }

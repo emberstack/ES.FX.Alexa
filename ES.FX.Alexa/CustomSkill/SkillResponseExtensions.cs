@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ES.FX.Alexa.CustomSkill.Dialog;
@@ -166,7 +167,7 @@ namespace ES.FX.Alexa.CustomSkill
             skillResponse.Response.AddDialogConfirmIntent(updatedIntent);
             return skillResponse;
         }
-        
+
 
         public static ResponseBody AddHintDirective(this ResponseBody response, string hint)
         {
@@ -249,7 +250,18 @@ namespace ES.FX.Alexa.CustomSkill
                 Permissions = permissions?.ToList()
             });
         }
+        public static ResponseBody WithAskForPermissionsConsentCard(this ResponseBody response, params string[] permissions)
+        {
+            return response.WithAskForPermissionsConsentCard(permissions as IEnumerable<string>);
+        }
         public static SkillResponse WithAskForPermissionsConsentCard(this SkillResponse skillResponse, IEnumerable<string> permissions)
+        {
+            skillResponse.Response.WithAskForPermissionsConsentCard(permissions);
+            return skillResponse;
+        }
+
+
+        public static SkillResponse WithAskForPermissionsConsentCard(this SkillResponse skillResponse, params string[] permissions)
         {
             skillResponse.Response.WithAskForPermissionsConsentCard(permissions);
             return skillResponse;
