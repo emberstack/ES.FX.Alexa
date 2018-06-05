@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ES.FX.Alexa.CustomSkill.CanFulfillIntent;
 using Newtonsoft.Json;
 
 namespace ES.FX.Alexa.CustomSkill
@@ -15,9 +16,12 @@ namespace ES.FX.Alexa.CustomSkill
         public Reprompt Reprompt { get; set; }
 
         [JsonProperty("shouldEndSession", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? ShouldEndSession { get; set; } = true;
+        public bool? ShouldEndSession { get; set; }
 
         [JsonProperty("directives", NullValueHandling = NullValueHandling.Ignore)]
         public IList<Directive> Directives { get; set; } = new List<Directive>();
+
+        [JsonProperty("canFulfillIntent", NullValueHandling = NullValueHandling.Ignore)]
+        public CanFulfillIntentResponse CanFulfillIntent { get; set; }
     }
 }

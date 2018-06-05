@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ES.FX.Alexa.CustomSkill.AudioPlayer;
 using ES.FX.Alexa.CustomSkill.Dialog;
 using ES.FX.Alexa.CustomSkill.Display;
 using ES.FX.Alexa.CustomSkill.VideoApp;
@@ -87,6 +89,23 @@ namespace ES.FX.Alexa.CustomSkill
         }
 
 
+        public static ResponseBody AddDirective<TDirective>(this ResponseBody response,
+            Action<TDirective> configure = null) where TDirective : Directive, new()
+        {
+            var directive = new TDirective();
+            configure?.Invoke(directive);
+            response.Directives.Add(directive);
+            return response;
+        }
+
+        public static SkillResponse AddDirective<TDirective>(this SkillResponse skillResponse,
+            Action<TDirective> configure = null) where TDirective : Directive, new()
+        {
+            skillResponse.Response.AddDirective<TDirective>();
+            return skillResponse;
+        }
+
+
         public static ResponseBody AddDirective(this ResponseBody response, Directive directive)
         {
             response.Directives.Add(directive);
@@ -113,12 +132,71 @@ namespace ES.FX.Alexa.CustomSkill
         }
 
 
+        public static ResponseBody AddAudioPlayerPlayDirective(this ResponseBody response, PlayBehavior behavior)
+        {
+            return response.AddDirective<AudioPlayerPlayDirective>(
+                directive => directive.PlayBehavior = behavior);
+        }
+
+        public static SkillResponse AddAudioPlayerPlayDirective(this SkillResponse skillResponse, PlayBehavior behavior)
+        {
+            skillResponse.Response.AddAudioPlayerPlayDirective(behavior);
+            return skillResponse;
+        }
+
+
+        public static ResponseBody AddAudioPlayerStopDirective(this ResponseBody response)
+        {
+            return response.AddDirective<AudioPlayerStopDirective>();
+        }
+
+        public static SkillResponse AddAudioPlayerStopDirective(this SkillResponse skillResponse)
+        {
+            skillResponse.Response.AddAudioPlayerStopDirective();
+            return skillResponse;
+        }
+
+
+        public static ResponseBody AddVideoAppLaunchDirective(this ResponseBody response, string source,
+            string title = null, string subtitle = null)
+        {
+            return response.AddDirective<VideoAppLaunchDirective>(directive =>
+            {
+                directive.VideoItem.Source = source;
+                if (!string.IsNullOrWhiteSpace(title) || !string.IsNullOrWhiteSpace(subtitle))
+                    directive.VideoItem.Metadata = new VideoItemMetadata
+                    {
+                        Title = title,
+                        Subtitle = subtitle
+                    };
+            });
+        }
+        public static SkillResponse AddVideoAppLaunchDirective(this SkillResponse skillResponse, string source,
+            string title = null, string subtitle = null)
+        {
+            skillResponse.Response.AddVideoAppLaunchDirective(source, title, subtitle);
+            return skillResponse;
+        }
+
+
+        public static ResponseBody AddAudioPlayerClearQueueDirective(this ResponseBody response)
+        {
+            return response.AddDirective<AudioPlayerClearQueueDirective>();
+        }
+
+        public static SkillResponse AddAudioPlayerClearQueueDirective(this SkillResponse skillResponse)
+        {
+            skillResponse.Response.AddAudioPlayerClearQueueDirective();
+            return skillResponse;
+        }
+
+
         public static ResponseBody AddDialogDelegate(this ResponseBody response, Intent updatedIntent = null)
         {
-            return response.AddDirective(new DialogDelegateDirective
-            {
-                UpdatedIntent = updatedIntent
-            }).ShouldEndSession(false);
+            return response
+                .AddDirective<DialogDelegateDirective>(
+                    directive => { directive.UpdatedIntent = updatedIntent; })
+                .ShouldEndSession(false);
         }
 
         public static SkillResponse AddDialogDelegate(this SkillResponse skillResponse, Intent updatedIntent = null)
@@ -131,10 +209,10 @@ namespace ES.FX.Alexa.CustomSkill
         public static ResponseBody AddDialogElicitSlot(this ResponseBody response, string slotName,
             Intent updatedIntent = null)
         {
-            return response.AddDirective(new DialogElicitSlotDirective
+            return response.AddDirective<DialogElicitSlotDirective>(directive =>
                 {
-                    SlotName = slotName,
-                    UpdatedIntent = updatedIntent
+                    directive.SlotName = slotName;
+                    directive.UpdatedIntent = updatedIntent;
                 })
                 .ShouldEndSession(false);
         }
@@ -150,10 +228,10 @@ namespace ES.FX.Alexa.CustomSkill
         public static ResponseBody AddDialogConfirmSlot(this ResponseBody response, string slotName,
             Intent updatedIntent = null)
         {
-            return response.AddDirective(new DialogConfirmSlotDirective
+            return response.AddDirective<DialogConfirmSlotDirective>(directive =>
                 {
-                    SlotName = slotName,
-                    UpdatedIntent = updatedIntent
+                    directive.SlotName = slotName;
+                    directive.UpdatedIntent = updatedIntent;
                 })
                 .ShouldEndSession(false);
         }
@@ -168,10 +246,11 @@ namespace ES.FX.Alexa.CustomSkill
 
         public static ResponseBody AddDialogConfirmIntent(this ResponseBody response, Intent updatedIntent = null)
         {
-            return response.AddDirective(new DialogConfirmIntentDirective
-            {
-                UpdatedIntent = updatedIntent
-            }).ShouldEndSession(false);
+            return response.AddDirective<DialogConfirmIntentDirective>(directive =>
+                {
+                    directive.UpdatedIntent = updatedIntent;
+                })
+                .ShouldEndSession(false);
         }
 
         public static SkillResponse AddDialogConfirmIntent(this SkillResponse skillResponse,
@@ -228,6 +307,7 @@ namespace ES.FX.Alexa.CustomSkill
             return skillResponse;
         }
 
+
         public static ResponseBody WithStandardCard(this ResponseBody response, string title, string content,
             string smallImageUrl = null, string largeImageUrl = null)
         {
@@ -277,6 +357,7 @@ namespace ES.FX.Alexa.CustomSkill
         {
             return response.WithAskForPermissionsConsentCard(permissions as IEnumerable<string>);
         }
+
 
         public static SkillResponse WithAskForPermissionsConsentCard(this SkillResponse skillResponse,
             IEnumerable<string> permissions)

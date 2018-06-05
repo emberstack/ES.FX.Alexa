@@ -3,7 +3,7 @@ using Newtonsoft.Json.Converters;
 
 namespace ES.FX.Alexa.CustomSkill.AudioPlayer
 {
-    public class PlayDirective : Directive
+    public class AudioPlayerPlayDirective : Directive
     {
         public override string Type => "AudioPlayer.Play";
 

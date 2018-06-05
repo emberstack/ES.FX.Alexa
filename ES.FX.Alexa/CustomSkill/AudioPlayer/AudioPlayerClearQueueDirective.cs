@@ -3,7 +3,7 @@ using Newtonsoft.Json.Converters;
 
 namespace ES.FX.Alexa.CustomSkill.AudioPlayer
 {
-    public class ClearQueueDirective : Directive
+    public class AudioPlayerClearQueueDirective : Directive
     {
         public override string Type => "AudioPlayer.ClearQueue";
 

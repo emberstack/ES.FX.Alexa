@@ -11,7 +11,8 @@ namespace ES.FX.Alexa.CustomSkill.Api
         {
         }
 
-        public async Task<bool> ProgressiveResponseAsync(ProgressiveResponse progressiveResponse)
+
+        public async Task<bool> PostProgressiveResponseAsync(ProgressiveResponse progressiveResponse)
         {
             var response = await HttpClient.PostAsync("/v1/directives",
                 new StringContent(JsonConvert.SerializeObject(progressiveResponse), Encoding.UTF8, "application/json"));

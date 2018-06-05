@@ -4,9 +4,9 @@ using ES.FX.Alexa.CustomSkill.Api.Models;
 
 namespace ES.FX.Alexa.CustomSkill.Api
 {
-    public class DeviceApi : SkillApi
+    public class DevicesApi : SkillApi
     {
-        public DeviceApi(string deviceId, HttpClient httpClient) : base(httpClient)
+        public DevicesApi(string deviceId, HttpClient httpClient) : base(httpClient)
         {
             DeviceId = deviceId;
         }

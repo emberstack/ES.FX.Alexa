@@ -28,7 +28,8 @@ namespace ES.FX.Alexa.Json
             if (jobject.ContainsKey("type")) requestType = jobject["type"].Value<string>();
 
             var match = Assembly.GetExecutingAssembly().GetTypes()
-                .Select(type => new {type, attributes = type.GetCustomAttributes(typeof(HasTypeAttribute), true)})
+                .Where(s => s.IsSubclassOf(typeof(TBaseType)) && !s.IsAbstract)
+                .Select(type => new { type, attributes = type.GetCustomAttributes(typeof(HasTypeAttribute), true) })
                 .Where(t =>
                     t.attributes != null &&
                     t.attributes.OfType<HasTypeAttribute>().Any(a => a.Type == requestType))

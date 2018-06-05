@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Net;
+using System.Net.Http;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -14,6 +15,8 @@ namespace ES.FX.Alexa.CustomSkill
             new ConcurrentDictionary<string, byte[]>();
 
         public static bool UseInMemoryCache { get; set; }
+
+        private static HttpClient HttpClient { get; } = new HttpClient();
 
         public static async Task<bool> ValidateRequest(string certificateUrl, string signature, string body)
         {
@@ -29,14 +32,14 @@ namespace ES.FX.Alexa.CustomSkill
                     !certificateUri.IsDefaultPort)
                     return false;
 
-
                 byte[] certificateData = null;
                 if (UseInMemoryCache) CertificateDictionary.TryGetValue(certificateUrl, out certificateData);
-                certificateData = certificateData ?? await new WebClient().DownloadDataTaskAsync(certificateUrl);
+                certificateData = certificateData ?? await HttpClient.GetByteArrayAsync(certificateUrl);
 
 
                 var certificate = new X509Certificate2(certificateData);
                 var certificateSimpleName = certificate.GetNameInfo(X509NameType.SimpleName, false);
+                if (string.IsNullOrWhiteSpace(certificateSimpleName)) return false;
                 if (certificate.NotAfter < DateTime.Now || certificate.NotBefore > DateTime.Now ||
                     !certificateSimpleName.Equals("echo-api.amazon.com", StringComparison.OrdinalIgnoreCase))
                     return false;
