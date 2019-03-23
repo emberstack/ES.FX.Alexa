@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using ES.FX.Alexa.Json;
+using Newtonsoft.Json;
 
 namespace ES.FX.Alexa.CustomSkill.VideoApp
 {
+    [HasType("VideoApp.Launch")]
     public class VideoAppLaunchDirective : Directive
     {
         public override string Type => "VideoApp.Launch";

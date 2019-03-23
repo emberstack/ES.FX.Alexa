@@ -1,10 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using ES.FX.Alexa.Json;
+using Newtonsoft.Json;
 
 namespace ES.FX.Alexa.CustomSkill.Dialog
 {
+    [HasType("Dialog.ElicitSlot")]
     public class DialogElicitSlotDirective : Directive
     {
-        [JsonProperty("type")]
         public override string Type => "Dialog.ElicitSlot";
 
         [JsonProperty("slotToElicit")]

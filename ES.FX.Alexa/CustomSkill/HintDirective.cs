@@ -1,10 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using ES.FX.Alexa.Json;
+using Newtonsoft.Json;
 
 namespace ES.FX.Alexa.CustomSkill
 {
+    [HasType("Hint")]
     public class HintDirective : Directive
     {
-        [JsonProperty("type")]
         public override string Type => "Hint";
 
         [JsonProperty("hint")]

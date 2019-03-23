@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using ES.FX.Alexa.Json;
+using Newtonsoft.Json;
 
 namespace ES.FX.Alexa.CustomSkill
 {
+    [HasType("Simple")]
     public class SimpleCard : Card
     {
         public override string Type => "Simple";
